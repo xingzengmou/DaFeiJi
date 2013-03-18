@@ -1,0 +1,19 @@
+﻿Build started 2013/3/15 14:06:35.
+     1>Project "F:\design\DaFeiJi\DaFeiJi\proj.win32\DaFeiJi.win32.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IF:\design\DaFeiJi\cocos2dx /IF:\design\DaFeiJi\cocos2dx\include /IF:\design\DaFeiJi\cocos2dx\kazmath\include /IF:\design\DaFeiJi\cocos2dx\platform\win32 /IF:\design\DaFeiJi\cocos2dx\platform\third_party\win32 /IF:\design\DaFeiJi\cocos2dx\platform\third_party\win32\OGLES /IF:\design\DaFeiJi\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt GameBullet.cpp GameEnemy.cpp GamePlayer.cpp GameSprite.cpp MapScene.cpp
+         GameSprite.cpp
+         GameEnemy.cpp
+     1>f:\design\dafeiji\dafeiji\proj.win32\gameenemy.cpp(5): error C2511: 'GameEnemy::GameEnemy(void)' : overloaded member function not found in 'GameEnemy'
+                 f:\design\dafeiji\dafeiji\proj.win32\gameenemy.h(9) : see declaration of 'GameEnemy'
+     1>f:\design\dafeiji\dafeiji\proj.win32\gameenemy.cpp(10): error C2600: 'GameEnemy::~GameEnemy' : cannot define a compiler-generated special member function (must be declared in the class first)
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         MapScene.cpp
+         GamePlayer.cpp
+         GameBullet.cpp
+     1>Done Building Project "F:\design\DaFeiJi\DaFeiJi\proj.win32\DaFeiJi.win32.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.00
