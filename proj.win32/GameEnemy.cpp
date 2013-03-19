@@ -97,5 +97,67 @@ int GameEnemy::getBulletTick() {
 bool GameEnemy::isCollision(GameSprite *testsprite) {
 	CCSize ownSize = mysprite->getContentSize();
 	CCSize othersize = testsprite->getMySize();
-	CCPoint ownp = 
+	CCPoint ownp = mysprite->getPosition();
+	CCPoint otherp = testsprite->getSprite()->getPosition();
+	if (abs(ownp.x - otherp.x) <= ownSize.width / 2 + othersize.width / 2
+		&& abs(ownp.y - otherp.y) <= ownSize.height / 2 + othersize.height / 2) {
+			return true;
+	}
+	return false;
+}
+
+bool GameEnemy::collision(GamePlayer *testsprite) {
+	CCSize ownSize = mysprite->getContentSize();
+	CCSize othersize = testsprite->getMySize();
+	CCPoint ownp = mysprite->getPosition();
+	CCPoint otherp = testsprite->getSprite()->getPosition();
+	if (abs(ownp.x - otherp.x) <= ownSize.width / 2
+		+ othersize.width / 2 
+		&&  abs(ownp.y - otherp.y) <= ownSize.height / 2 + othersize.height / 2) {
+			if (ownp.y + ownSize.height / 2 <= otherp.y - othersize.height / 2) {
+				otherp.y = ownp.y + ownSize.height / 2 + othersize.height / 2;
+				testsprite->setPosition(ccp(otherp.x, otherp.y));
+				return true;
+			}
+
+			if (ownp.y + ownSize.height / 2 >= otherp.y + othersize.height / 2 
+				&& ownp.y - ownSize.height / 2 <= otherp.y + othersize.height / 2) {
+					otherp.y = ownp.y - ownSize.height / 2 - othersize.height / 2;
+					testsprite->setPosition(ccp(otherp.x, otherp.y));
+					return true;
+			}
+
+			if (ownp.x + ownSize.width / 2 >= otherp.x - othersize.width / 2
+				&&  ownp.x - ownSize.width / 2 <= otherp.x - othersize.width / 2) {
+					otherp.x = ownp.x + ownSize.width / 2 + othersize.width / 2;
+					testsprite->setPosition(ccp(otherp.x, otherp.y));
+					return true;
+			}
+
+			if (ownp.x + ownSize.width / 2 >= otherp.x + othersize.width / 2 
+				&& ownp.x - ownSize.width / 2 <= otherp.x + othersize.width / 2) {
+					otherp.x = ownp.x - ownSize.width / 2 - othersize.width / 2;
+					testsprite->setPosition(ccp(otherp.x, otherp.y));
+					return true;
+			}
+
+	}
+	return false;
+}
+
+
+bool GameEnemy::collisionWidthBullet(GameBullet *testsprite) {
+	CCSize ownsize = mysprite->getContentSize();
+	CCSize othersize = testsprite->getMySize();
+	CCPoint ownp = mysprite->getPosition();
+	CCPoint otherp = testsprite->getSprite()->getPosition();
+	if (abs(ownp.x - otherp.x) <= ownsize.width / 2 + othersize.width / 2
+		&& abs(ownp.y - otherp.y) <= ownsize.height / 2 + othersize.height / 2) {
+			return true;
+	}
+	return false;
+}
+
+CCSize GameEnemy::getMySize() {
+	return mysprite->getContentSize();
 }

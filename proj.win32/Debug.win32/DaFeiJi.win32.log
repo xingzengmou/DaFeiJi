@@ -1,19 +1,23 @@
-﻿Build started 2013/3/15 14:06:35.
-     1>Project "F:\design\DaFeiJi\DaFeiJi\proj.win32\DaFeiJi.win32.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2013/3/19 17:32:44.
+     1>Project "F:\git_hub\DaFeiJi\proj.win32\DaFeiJi.win32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IF:\design\DaFeiJi\cocos2dx /IF:\design\DaFeiJi\cocos2dx\include /IF:\design\DaFeiJi\cocos2dx\kazmath\include /IF:\design\DaFeiJi\cocos2dx\platform\win32 /IF:\design\DaFeiJi\cocos2dx\platform\third_party\win32 /IF:\design\DaFeiJi\cocos2dx\platform\third_party\win32\OGLES /IF:\design\DaFeiJi\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt GameBullet.cpp GameEnemy.cpp GamePlayer.cpp GameSprite.cpp MapScene.cpp
-         GameSprite.cpp
+         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /IF:\git_hub\DaFeiJi\proj.win32\cocos2dx /IF:\git_hub\DaFeiJi\proj.win32\cocos2dx\include /IF:\git_hub\DaFeiJi\proj.win32\cocos2dx\kazmath\include /IF:\git_hub\DaFeiJi\proj.win32\cocos2dx\platform\win32 /IF:\git_hub\DaFeiJi\proj.win32\cocos2dx\platform\third_party\win32 /IF:\git_hub\DaFeiJi\proj.win32\cocos2dx\platform\third_party\win32\OGLES /IF:\git_hub\DaFeiJi\proj.win32\CocosDenshion\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt GameEnemy.cpp
          GameEnemy.cpp
-     1>f:\design\dafeiji\dafeiji\proj.win32\gameenemy.cpp(5): error C2511: 'GameEnemy::GameEnemy(void)' : overloaded member function not found in 'GameEnemy'
-                 f:\design\dafeiji\dafeiji\proj.win32\gameenemy.h(9) : see declaration of 'GameEnemy'
-     1>f:\design\dafeiji\dafeiji\proj.win32\gameenemy.cpp(10): error C2600: 'GameEnemy::~GameEnemy' : cannot define a compiler-generated special member function (must be declared in the class first)
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         MapScene.cpp
-         GamePlayer.cpp
-         GameBullet.cpp
-     1>Done Building Project "F:\design\DaFeiJi\DaFeiJi\proj.win32\DaFeiJi.win32.vcxproj" (Build target(s)) -- FAILED.
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /l"0x0409" /IDebug.win32\ /nologo /fo"Debug.win32\DaFeiJi.res" DaFeiJi.rc 
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\git_hub\DaFeiJi\proj.win32\Debug.win32\DaFeiJi.win32.exe" /INCREMENTAL /NOLOGO /LIBPATH:F:\git_hub\DaFeiJi\proj.win32\Debug.win32\ libcocos2d.lib opengl32.lib glew32.lib libCocosDenshion.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\git_hub\DaFeiJi\proj.win32\Debug.win32\DaFeiJi.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\git_hub\DaFeiJi\proj.win32\Debug.win32\DaFeiJi.win32.lib" /MACHINE:X86 Debug.win32\DaFeiJi.res
+         Debug.win32\AppDelegate.obj
+         Debug.win32\HelloWorldScene.obj
+         Debug.win32\GameBullet.obj
+         Debug.win32\GameEnemy.obj
+         Debug.win32\GamePlayer.obj
+         Debug.win32\GameSprite.obj
+         Debug.win32\main.obj
+         Debug.win32\MapScene.obj
+         DaFeiJi.win32.vcxproj -> F:\git_hub\DaFeiJi\proj.win32\Debug.win32\DaFeiJi.win32.exe
+     1>Done Building Project "F:\git_hub\DaFeiJi\proj.win32\DaFeiJi.win32.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:04.00
+Time Elapsed 00:00:05.45
