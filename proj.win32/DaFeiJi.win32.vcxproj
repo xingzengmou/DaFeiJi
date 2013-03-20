@@ -121,6 +121,23 @@
     <Image Include="..\Resources\CloseNormal.png" />
     <Image Include="..\Resources\CloseSelected.png" />
     <Image Include="..\Resources\HelloWorld.png" />
+    <Image Include="Resources\back_img1.png" />
+    <Image Include="Resources\bullet.png" />
+    <Image Include="Resources\bullet3456.png" />
+    <Image Include="Resources\bullet5.png" />
+    <Image Include="Resources\CloseNormal.png" />
+    <Image Include="Resources\CloseSelected.png" />
+    <Image Include="Resources\e2.png" />
+    <Image Include="Resources\e3.png" />
+    <Image Include="Resources\e4.png" />
+    <Image Include="Resources\e5.png" />
+    <Image Include="Resources\e6.png" />
+    <Image Include="Resources\explored.png" />
+    <Image Include="Resources\fire.png" />
+    <Image Include="Resources\HelloWorld.png" />
+    <Image Include="Resources\life.png" />
+    <Image Include="Resources\player.png" />
+    <Image Include="Resources\stars.png" />
     <Image Include="res\DaFeiJi.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +163,9 @@
     <ClCompile Include="GameSprite.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExplodingRing.plist" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

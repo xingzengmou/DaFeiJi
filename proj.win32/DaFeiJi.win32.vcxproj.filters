@@ -27,6 +27,57 @@
     <Image Include="..\Resources\HelloWorld.png">
       <Filter>resource</Filter>
     </Image>
+    <Image Include="Resources\back_img1.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\bullet.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\bullet5.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\bullet3456.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\CloseNormal.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\CloseSelected.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\e2.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\e3.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\e4.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\e5.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\e6.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\explored.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\fire.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\HelloWorld.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\life.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\player.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="Resources\stars.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DaFeiJi.rc">
@@ -87,5 +138,10 @@
     <ClCompile Include="GameBullet.cpp">
       <Filter>source</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExplodingRing.plist">
+      <Filter>resource</Filter>
+    </None>
   </ItemGroup>
 </Project>

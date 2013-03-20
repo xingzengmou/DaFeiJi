@@ -36,9 +36,9 @@ public:
 	virtual bool init();
 	void reduceLife();
 	void resetreduce(float dt);
-	void enemyrestart(cocos2d::CCTime dt);
-	void resettouch(cocos2d::CCTime dt);
-	void update(cocos2d::CCTime dt);
+	void enemyrestart(float dt);
+	void resettouch(float dt);
+	void update(float dt);
 	static cocos2d::CCScene *scene();
 	virtual void ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
 	virtual void ccTouchesMoved(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);

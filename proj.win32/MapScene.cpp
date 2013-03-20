@@ -46,9 +46,10 @@ bool MapScene::init() {
 	this->addChild((player->getSprite()), 2, 0);
 	this->addChild((enemy->getSprite()), 2, 100);
 	this->addChild((player->getStreak()), 1);
-	this->m_emitter = new CCParticleSystemQuad();
-	this->m_emitter->setVisible(false);
-	this->addChild(m_emitter, 10);
+	//this->m_emitter = CCParticleSystemQuad::create();
+	//m_emitter->initWithFile("ExplodingRing.plist");
+	//this->m_emitter->setVisible(false);
+	//this->addChild(m_emitter, 10);
 	this->setTouchEnabled(true);
 	this->scheduleUpdate();
 	this->stepindex = -1;
@@ -107,29 +108,160 @@ void MapScene::reduceLife() {
 }
 
 void MapScene::resetreduce(float dt) {
-	this->isreduce = true;
+	this->isreduce = false;
 }
 
-void MapScene::update(CCTime dt) {
+void MapScene::update(float dt) {
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCPoint maplayer1p = maplayer1->getPosition();
+	CCPoint maplayer2p = maplayer2->getPosition();
+	maplayer1->setPosition(ccp(maplayer1p.x, maplayer1p.y - 5));
+	maplayer2->setPosition(ccp(maplayer2p.x, maplayer2p.y - 5));
+	if (maplayer2p.y < 0) {
+		float temp = maplayer2p.y + 512;
+		maplayer1->setPosition(ccp(maplayer1p.x, temp));
+	}
+
+	if (maplayer1p.y < 0) {
+		float temp = maplayer1p.y + 512;
+		maplayer2->setPosition(ccp(maplayer2p.x, temp));
+	}
+
+	if (!isreduce) {
+		for (int i = 0; i < enemybullets->capacity(); i ++) {
+			GameBullet *mybullet = (GameBullet*)(enemybullets->objectAtIndex(i));
+			if (mybullet->getSprite()->isVisible() &&
+				player->isCollision(mybullet)) {
+					mybullet->getSprite()->setVisible(false);
+					reduceLife();
+			}
+		}
+	}
+
+	if (enemy->getState() != -1) {
+		enemy->tick();
+		if (enemy->getBulletTick() == 59) {
+			CCPoint herop = enemy->getSprite()->getPosition();
+			CCSize herosize = enemy->getSprite()->getContentSize();
+			for (int i = 0; i < enemybullets->capacity(); i ++) {
+				GameBullet *mybullet = (GameBullet*)enemybullets->objectAtIndex(i);
+				if (!mybullet->getSprite()->isVisible()) {
+					mybullet->setPosition(ccp(herop.x, herop.y - herosize.height));
+					mybullet->getSprite()->setVisible(true);
+					break;
+				}
+			}
+		}
+
+		if (!isreduce && enemy->isCollision(player)) {
+			stepindex = 0;
+			enemy->setDead();
+			m_emitter = CCParticleSystemQuad::create("ExplodingRing.plist");
+			//m_emitter->initWithFile("ExplodingRing.plist");
+			m_emitter->setPosition(enemy->getSprite()->getPosition());
+			m_emitter->setVisible(true);
+			this->addChild(m_emitter, 10);
+			reduceLife();
+			m_emitter->release();
+			schedule(schedule_selector(MapScene::enemyrestart), 2.0f);
+		} else {
+			for (int i = 0; i < bullets->capacity(); i ++) {
+				GameBullet *mybullet = (GameBullet *)bullets->objectAtIndex(i);
+				if (mybullet->getSprite()->isVisible()
+					&& enemy->collisionWidthBullet(mybullet)) {
+						enemy->setDead();
+						mybullet->getSprite()->setVisible(false);
+						m_emitter->initWithFile("ExplodingRing.plist");
+						m_emitter->setVisible(true);
+						m_emitter->setPosition(enemy->getSprite()->getPosition());
+						schedule(schedule_selector(MapScene::enemyrestart), 2.0f);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < bullets->capacity(); i ++) {
+		GameBullet *mybullet = (GameBullet*)bullets->objectAtIndex(i);
+		if (mybullet->getSprite()->isVisible()) {
+			mybullet->tick();
+			if (mybullet->getSprite()->getPosition().y > size.height) {
+				mybullet->getSprite()->setVisible(false);
+			}
+		}
+	}
+
+	for (int i = 0; i < enemybullets->capacity(); i ++ ) {
+		GameBullet *mybullet = (GameBullet*) enemybullets->objectAtIndex(i);
+		if (mybullet->getSprite()->isVisible()) {
+			mybullet->tick();
+			if (mybullet->getSprite()->getPosition().y < 0) {
+				mybullet->getSprite()->setVisible(false);
+			}
+		}
+	}
 
 }
 
-void MapScene::enemyrestart (CCTime dt) {
-
+void MapScene::enemyrestart (float dt) {
+	enemy->restart();
+	unschedule(schedule_selector(MapScene::enemyrestart));
 }
 
 void MapScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent) {
+	CCSetIterator it = pTouches->begin();
+	CCTouch *touch = (CCTouch*)(*it);
 
+	CCPoint m_tBeginPos = touch->getLocationInView();
+	m_tBeginPos = CCDirector::sharedDirector()->convertToGL(m_tBeginPos);
+	CCPoint herop = player->getSprite()->getPosition();
+	CCSize herosize = player->getSprite()->getContentSize();
+	if (m_tBeginPos.x > herop.x - herosize.width / 2
+		&& m_tBeginPos.x < herop.x + herosize.width / 2
+		&& m_tBeginPos.y > herop.y - herosize.height / 2
+		&& m_tBeginPos.y < herop.y + herosize.height / 2) {
+			stepindex = -5;
+			xdelta = m_tBeginPos.x - herop.x;
+			ydelta = m_tBeginPos.y - herop.y;
+			schedule(schedule_selector(MapScene::resettouch), 1.0f);
+	}
 }
 
 void MapScene::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent) {
-
+	CCSetIterator it = pTouches->begin();
+	CCTouch *touch = (CCTouch*)(*it);
+	CCPoint touchLocation = CCDirector::sharedDirector()->convertToGL(touch->getLocationInView());
+	if (stepindex == -5) {
+		CCPoint herop = player->getSprite()->getPosition();
+		CCPoint lastone = ccp(herop.x + xdelta, herop.y + ydelta);
+		CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+		if (touchLocation.x >= 0
+			&& touchLocation.x <= winSize.width
+			&& touchLocation.y >= 0
+			&& touchLocation.y <= winSize.height) {
+				if (lastone.x != touchLocation.x
+					|| lastone.y != touchLocation.y) {
+						player->setPosition(ccp(touchLocation.x - xdelta,touchLocation.y - ydelta));
+				}
+		}
+	}
 }
 
 void MapScene::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent) {
-
+	if (stepindex == -5) {
+		unschedule(schedule_selector(MapScene::resettouch));
+		stepindex = -1;
+	}
 }
 
-void MapScene::resettouch(CCTime dt) {
-
+void MapScene::resettouch(float dt) {
+	CCPoint herop = player->getSprite()->getPosition();
+	CCSize herosize = player->getSprite()->getContentSize();
+	for (int i = 0; i < bullets->capacity(); i++) {
+		GameBullet *mybullet = (GameBullet*)bullets->objectAtIndex(i);
+		if (!mybullet->getSprite()->isVisible()) {
+			mybullet->setPosition(ccp(herop.x, herop.y + herosize.height));
+			mybullet->getSprite()->setVisible(true);
+			break;
+		}
+	}
 }

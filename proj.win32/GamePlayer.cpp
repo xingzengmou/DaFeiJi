@@ -3,7 +3,8 @@
 using namespace cocos2d;
 
 GamePlayer::GamePlayer(char *s) {
-	this->mysprite = CCSprite::createWithSpriteFrameName(s);
+	//this->mysprite = CCSprite::createWithSpriteFrameName(s);
+	this->mysprite = CCSprite::create(s);
 	this->myStreak = CCMotionStreak::create(2,2,2,ccc3(255,0,0), s);
 }
 
